@@ -1,10 +1,8 @@
 # https://adventofcode.com/2020/day/2
 using AdventOfCode
-using BenchmarkTools, Test
+using Test
 
 input = readlines("data/2020/day_2.txt")
-
-methods(isvalid)
 
 function part_1(input)
     valid(line) = begin
