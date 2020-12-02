@@ -1,6 +1,6 @@
 # https://adventofcode.com/2020/day/1
 using AdventOfCode
-using BenchmarkTools, Test
+using Test, BenchmarkTools
 
 input = parse.(Int, readlines("data/2020/day_1.txt"))
 
