@@ -4,9 +4,7 @@ using Test, BenchmarkTools
 
 input = readlines("2020/data/day_5.txt")
 
-row(str) = parse(Int, replace(replace(str, 'F'=>'0'), 'B'=>'1'), base=2)
-col(str) = parse(Int, replace(replace(str, 'L'=>'0'), 'R'=>'1'), base=2)
-seatid(str) = row(str[1:7]) * 8 + col(str[8:10])
+seatid(str) = parse(Int, map(c-> (c=='B'||c=='R') ? '1' : '0', str), base=2)
 
 function part_1(input)
     maximum(seatid.(input))
@@ -15,20 +13,21 @@ end
 
 function part_2(input)
     ids = seatid.(input)
-    sort!(ids)
-    for i in 1:length(ids)-1
-        if ids[i] + 1 != ids[i+1]
-            return ids[i] + 1
-        end
+    min_id = minimum(ids)
+    bits = trues(maximum(ids) - min_id + 1)
+    for id in ids
+        bits[id - min_id + 1] = false
     end
+    findfirst(bits) + min_id - 1
 end
 @info part_2(input)
 
 @testset "day_5" begin
     @testset "part_1" begin
         a = "FBFBBFFRLR"
-        @test row(a[1:7]) == 44
-        @test col(a[8:10]) == 5
         @test seatid(a) == 357
     end
 end
+
+@btime part_1($input)
+@btime part_2($input)
