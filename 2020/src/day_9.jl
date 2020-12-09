@@ -14,7 +14,7 @@ function part_1(input; preamble=25)
         idx = ((i - 1) % preamble) + 1
         pairs[idx,:] .+= val - oldval
         pairs[:,idx] .+= val - oldval
-        pairs[idx,idx] += val - oldval
+        pairs[idx,idx] -= val - oldval
     end
     return -1
 end
