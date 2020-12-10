@@ -22,10 +22,17 @@ function part_2(input)
         if i == 1
             consecutive += 1
         else  # i == 3
-            total *= consecutive > 1 ? 2^(consecutive-1) : 1 # TODO FIXME
+            println(consecutive)
+            # total *= consecutive > 1 ? 2^(consecutive-1) : 1 # TODO FIXME
+            (consecutive == 2) && (total *= 2)
+            (consecutive == 3) && (total *= 4)
+            (consecutive == 4) && (total *= 7)
             consecutive = 0
         end
     end
+    (consecutive == 2) && (total *= 2)
+    (consecutive == 3) && (total *= 4)
+    (consecutive == 4) && (total *= 7)
     return total
 end
 @info part_2(input)
