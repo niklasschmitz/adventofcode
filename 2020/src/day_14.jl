@@ -26,7 +26,7 @@ end
 @info part_1(input)
 
 # gets the i-th (starting with 0 for LSB) bit of an integer n
-@inline getbit(n, i) = (n >> i) % 2
+@inline getbit(n, i) = (n >> i) & 1
 
 function part_2(input)
     mask0 = 0
